@@ -24,120 +24,42 @@
   {}
 
 \pdfinfo{
-    /Title (Writing Your Oxy CS Comps Paper in LaTeX)
-    /Author (Justin Li)
+    /Title (Clever Name: An Interactive, Generative Art Exhibit)
+    /Author (Joaquín Madrid Larrañaga)
 }
 
-\title{Writing Your Oxy CS Comps Paper in \LaTeX}
+\title{Clever Name: An Interactive, Generative Art Exhibit}
 
-\author{Justin Li}
+\author{Joaquín Madrid Larrañaga}
 \affiliation{Occidental College}
-\email{justinnhli@oxy.edu}
+\email{jmadridlarra@oxy.edu}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-    This document serves as an introduction to {\LaTeX} and also describes the requirements of the senior project final paper for Occidental College's Computer Science majors.
-    We start by justifying the use of {\LaTeX} over Word, Google Docs, and other What-You-See-Is-What-You-Get (WYSISYG) editors.
-    A brief tutorial to {\LaTeX} follows, reviewing the most common commands used in paper writing.
-    We then turn our attention to the Oxy CS Comps Paper, first contextualizing it within the major curriculum, before exploring each major section of the paper in detail.
-    We conclude with some miscellaneous tips for successfully completing comps.
+    
 \end{abstract}
 
 \section{Introduction}
 
-\section{Using \LaTeX}
+\section{Problem Context}
 
-LaTeX (pronounced \textit{lah-teck} or \textit{lay-teck}), often stylized as {\LaTeX} and written as latex, is a document markup language and typesetting system.
-Building on the {\TeX} language created by Donald Knuth in 1978, LaTeX provides additional commands for common document needs such as sections, figures, and bibliograhpies.
-LaTeX is widely used in academia, especially in mathematical fields, due to how easy it is to write mathematical equations and its automatic management of references.
-Since it is a markup language, LaTeX source files are written in plain text, which also makes it compatible with version control systems like git.
+From interactive sculptures to light projections, the interactive art scene has enthralled audiences throughout the world \cite{sarto_disneys_2021, noauthor_teamlab_2020}. By allowing audiences to interact with these art pieces, artists have added elements of curiosity, wonder, and suspense. This interaction is usually tactile, verbal, or a motion on the part of the audience that causes a change in the art piece itself.  However, interactive art is not the same as generative art.  Generative art does not necessarily involve interaction on the part of the audience, but instead focuses on generating aspects of the art piece over time.  This type of art is typically associated with art pieces that utilize CGI or other technical aspects that rely on computers or code to generate the art piece \cite{sparacino_narrative_2002}. 
+        	
+The focus of this paper surrounds an interactive generative art piece that seeks to explore first time interactions.  The COVID-19 pandemic caused lockdowns and isolations across the world and, as a result, the chances of meeting someone new dropped significantly.  Suddenly, there were not any opportunities for people to gather with strangers in order to grow their social circles.  This interactive art installation aims to explore the experience of meeting something for the first time.  As people began leaving isolation after the COVID-19 vaccine was widely available, they were suddenly thrust into various social situations, many of which involved meeting new people.  However, these interactions are often characterized with polite small talk rather than getting to the meat of a conversation.  All personal interactions are characterized by vulnerability from one of the parties, but most first time interactions neglect this step making a conversation feel impersonal or superficial.  During most first time interactions, each member is carefully testing the waters to see if the other party is trustworthy.  Meeting a new animal eliminates this awkward phase of small talk.  Most times animals just want to know if people are a threat, neutral, or an ally.  This categorization is determined through careful sensory inputs such as sniffing, licking, and making noises.  At the same time, people are careful when they meet a new animal in case the animal reacts in an unpredictable way.  For the purposes of this project, interacting with an animal also eliminates the need to connect through language forcing the user to interact with the character through movement and emotion. By generating a fictional character that realistically responds to human interactions, each observer can experience what it is like to gain the trust of a pet for the first time… along with all the unpredictability that comes with interacting with animals. 
 
-The most primitive syntax of LaTeX is the \textit{macro} or \textit{command}, which is always written with a backslash followed by the name of the command.
-The {\LaTeX} glyph, for example, can be created with the command \texttt{\textbackslash LaTeX}.
-Some commands take parameters, which are denoted in braces (e.g., \texttt{\textbackslash usepackage\{biblatex\}} will import the \texttt{biblatex} package), with some commands additionally accepting options in square brackets (e.g., \texttt{\textbackslash usepackage[style=numeric]\{biblatex\}}).
-The \texttt{\textbackslash begin} and \texttt{\textbackslash end} commands are special, as they indicate the start of an \textit{environment}.
-The content of LaTeX documents, for example, are surrounded by \texttt{\textbackslash begin\{document\}} and \texttt{\textbackslash end\{document\}}, indicating the text that should appear in the document.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=.95\linewidth]{first-page.png}
-    \caption{
-        The first page of this template when compiled.
-    }
-    \label{structures}
-\end{figure}
+\section{Technical Background}
 
-Beyond the basic syntax, much of learning LaTeX is learning the different commands and environments that exist.
-For example, text can be made \textbf{bold} with \texttt{\textbackslash textbf}, \textit{italic} with \texttt{\textbackslash textit}, and \texttt{monospaced} with \texttt{\textbackslash texttt} (the \texttt{tt} stands for for ``teletype'').
-Single dollar signs denote inline equations, so \texttt{\$E = mc\textasciicircum 2\$} will be rendered as $E = mc^2$.
-Double dollar signs will render the equation in display mode, which we can see with the quadratic formula:
-$$\frac{{-b \pm \sqrt {b^2 - 4ac} }}{{2a}}$$
-There are also a handful of common environments: \texttt{itemize} for bulletpoint lists, \texttt{enumerate} for numbered lists, \texttt{figure} for figures, \texttt{tabular} for tables, and \texttt{lstlisting} for code listings.
-This covers the most frequently used commands, but as you might have already inferred, LaTeX is a vast and deep system, and can easily be overwhelming.
-We recommended following the \citetitle{Overleaf2021LearnLaTeXIn} tutorial \cite{Overleaf2021LearnLaTeXIn}, and examining and playing with the source of this document, to gain working proficiency with LaTeX.
+At the highest level, this installation focuses on human movement as the primary way of interacting with a computer.  This movement will be captured by a camera that transmits a live video feed into the computer.  By using JMyron \cite{noauthor_myron_nodate}, a video capture and computer vision software, the computer will be able to recognize different actions performed by the user. Then, these actions will be categorized and used to inform an algorithm to determine what the CGI character does.  This character will be created using OpenGL, a python based CGI software \cite{andreussi_realtimerendering_nodate}.  Specifically, a character will be designed and rigged using OpenGL, but it’s behavior (and therefore movement) will be dictated by a Markov chain.  Markov chains offer a powerful directed stochastic form of artificial intelligence where the computer is given a predetermined tree of possible actions based upon the previous action.  Then, according to some trained or predetermined probabiity, the computer will choose a path down the Markov chain. This Markov chain will take the user’s behavior into consideration and then determine the next logical response according to some probability.  There is a possibility that this probability can be determined by training the Markov chain, but these probabilities will likely be randomized. 
+By categorizing the user’s movements into a type of emotion or intention, the Markov chain can determine an appropriate response, rather than trying to respond to the infinite number of possible movements by the user on a case by case basis. Similarly, the Markov chain limits the amount of possible reactions by the CGI character, thereby limiting the amount of animation that needs to be prepared. 
 
-One final note on writing in LaTeX.
-Since LaTeX is only a markup language, the source files must be compiled into a viewable form, most commonly into a PDF file.
-The source of this document is made up of several files, each with its own purpose:
-\begin{itemize}
-    \item \texttt{template.tex} - The main LaTeX file containing the contents of the document.
-    \item \texttt{oxycomps.sty} - A style file with settings for what the document should look like.
-    \item \texttt{references.bib} - A list of bibliography items.
-    \item Other files containing images, build instructions, etc.
-\end{itemize}
-Manual compilation of these files is somewhat esoteric, as it requires multiple uses of the \texttt{pdflatex} and \texttt{biblatex} commands.
-Instead, it is much easier to use tools such as \texttt{latexmk} (in the terminal) or Overleaf (online) for compilation.
-We have also provided a \texttt{Makefile} which will automatically update the document as necessary; the use of makefiles is beyond the scope of this document, but see \textcite{Lambert2021MakefileTutorial}.
 
-\begin{comment}
+\section{Prior Work}
 
-\begin{figure}[]
-    \begin{center}
-        \includegraphics[width=\linewidth]{figure.pdf}
-    \end{center}
-    \caption{
-        Figure caption.
-        To get a figure to span two columns, use the {\tt figure*} environment rather than {\tt figure}.
-    }
-    \label{figure1}
-\end{figure}
-
-\begin{quote}
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Mauris pellentesque est nec nunc fringilla, a finibus nisl tempor.
-    Sed semper est massa, eget pulvinar neque posuere id.
-    Ut mauris tellus. 
-\end{quote}
-
-\begin{lstlisting}[language=Python]
-def hello():
-    print('hello, world!')
-\end{lstlisting}
-
-\end{comment}
-
-\begin{comment}
-No definition citations, unless the term itself is in dispute
-Separate problem background from technical background
-    Unclear if games and apps require much technical background
-    The general structure of the framework might be better suited for the Architecture Overview section
-        Eg. Flask uses decorators to associate functions with URLs
-        Eg. Unity has scripts associated with objects and specific triggers, such as walking into an area, pressing a button, etc.
-    Maybe a better name is "algorithmic background"?
-        Should explore what does and doesn't count
-            All ML counts
-            App and game frameworks do not
-        Framework vs. library?
-            I like the idea of [inversion of control](https://martinfowler.com/bliki/InversionOfControl.html), but that may be too abstract for students to understand
-        Heuristic: is understanding that system necessary to understand the results?
-            Ie. How Flask or Unity works doesn't influence whether the app/game is useful/fun/engaging
-            But how (say) linear regression works is highly relevant for why the results match/don't match the actual values
-\end{comment}
-
-\section{The Oxy CS Comps Paper}
+\citetitle{kwon_real-time_nodate} by \citeauthor{kwon_real-time_nodate} highlights many interactive generative art exhibits from the early 2000s. In 2003, Scott Snibbe created a visualization that recorded users' shadows and played them back allowing the user to add new shadows to the loop - similar to a guitar feedback loop.  Then, in 2015, Philip Worthington created the installation ``Shadow Monsters`` which used machine learning to recognize specific shapes and features in a user's shadow and modify it \cite{houston_public_media_mfah_2015}.  For example, shadows that look like circles will be made into eyes, and shadows that look like intersecting lines will be made into mouths.  This transformation happens in real time and artificial extremeties are added in real time to the shadow. These two installations forcus on modifying shadows from the user. However, ``Future You`` (2019) from Universal Everything, a technological art company, focuses on using the user as a puppeteer of sorts to animate a unique CGI character \cite{noauthor_future_2019}. This CGI character is a humanoid, futuristic being that is unique for each user based upon predetermined variables. Additionally, this character undergoes an evolution every 5 seconds becoming more complex the longer a user interacts with it.  In this way, the program is generating and modifying the art based upon the user's actions according to various variables (time and appearance).  This paper describes an art installation that uses various aspects from all of this previous work. 
 
 \subsection{Goals}
 
