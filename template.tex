@@ -24,11 +24,11 @@
   {}
 
 \pdfinfo{
-    /Title (Clever Name: An Interactive, Generative Art Exhibit)
+    /Title (Computational Queries: An Interactive Art Exhibit)
     /Author (Joaquín Madrid Larrañaga)
 }
 
-\title{Clever Name: An Interactive, Generative Art Exhibit}
+\title{Computational Queries: An Interactive Art Exhibit}
 
 \author{Joaquín Madrid Larrañaga}
 \affiliation{Occidental College}
@@ -43,18 +43,23 @@
 \end{abstract}
 
 \section{Introduction}
+From interactive sculptures to light projections, the interactive art scene has enthralled audiences throughout the world \cite{sarto_disneys_2021, noauthor_teamlab_2020}.  By creating digital projections, responsive animations, and live video feeds, artists have blurred the lines between traditional art and technology.  Many of these installations incorporate visuals and audio and ask participants to interact with physical pieces of the exhibit. This interaction is usually tactile, verbal, or a motion on the part of the audience that causes a change in the art piece itself.  
 
-\section{Problem Context}
+Interactive installations are nothing new. Since the 1960s, interactive art exhibits have ethralled artsts and computer scientists alike\cite{trifonova_software_2008}.
 
-From interactive sculptures to light projections, the interactive art scene has enthralled audiences throughout the world \cite{sarto_disneys_2021, noauthor_teamlab_2020}. By allowing audiences to interact with these art pieces, artists have added elements of curiosity, wonder, and suspense. This interaction is usually tactile, verbal, or a motion on the part of the audience that causes a change in the art piece itself.  However, interactive art is not the same as generative art.  Generative art does not necessarily involve interaction on the part of the audience, but instead focuses on generating aspects of the art piece over time.  This type of art is typically associated with art pieces that utilize CGI or other technical aspects that rely on computers or code to generate the art piece \cite{sparacino_narrative_2002}. 
-        	
-The focus of this paper surrounds an interactive generative art piece that seeks to explore first time interactions.  The COVID-19 pandemic caused lockdowns and isolations across the world and, as a result, the chances of meeting someone new dropped significantly.  Suddenly, there were not any opportunities for people to gather with strangers in order to grow their social circles.  This interactive art installation aims to explore the experience of meeting something for the first time.  As people began leaving isolation after the COVID-19 vaccine was widely available, they were suddenly thrust into various social situations, many of which involved meeting new people.  However, these interactions are often characterized with polite small talk rather than getting to the meat of a conversation.  All personal interactions are characterized by vulnerability from one of the parties, but most first time interactions neglect this step making a conversation feel impersonal or superficial.  During most first time interactions, each member is carefully testing the waters to see if the other party is trustworthy.  Meeting a new animal eliminates this awkward phase of small talk.  Most times animals just want to know if people are a threat, neutral, or an ally.  This categorization is determined through careful sensory inputs such as sniffing, licking, and making noises.  At the same time, people are careful when they meet a new animal in case the animal reacts in an unpredictable way.  For the purposes of this project, interacting with an animal also eliminates the need to connect through language forcing the user to interact with the character through movement and emotion. By generating a fictional character that realistically responds to human interactions, each observer can experience what it is like to gain the trust of a pet for the first time… along with all the unpredictability that comes with interacting with animals. 
+\section{Problem Context}	
+The focus of this paper surrounds an interactive art piece entitled ``Computational Queries'' that seeks to explore curiousity and discoverability.  The childlike wonder and curiosity that comes with discovering something new and interesting is unparalleled. This exhibit aims to provide an avenue for exploration and accomplishment through play.  ``Computational Queries'' is an interactive art installation that incorporates user movement and responsive projections to create a geometric pattern that shifts and changes according to the position of a user's hands.  Users will wave their hands around in front of the camera and the geometric pattern will flow and shift in real time. Similar to a game, this installation has additional levels that users can achieve by completing certain tasks.  For example, if a user waves their hand over a certain portion of the screen, a different background color may appear.  If the user places both of their hands near the new color and moves them in opposite directions, a space will be opened in the pattern and a new pattern will emerge.  This new level will have a different type of interaction and a different task that must be completed to move on to the next level.  After 5 levels, the installation will return back to the beginning.  As a result of this cyclical nature, users will be able to spend as little or as much time interacting with the installation as they would like since there is no true end or beginning. On the other hand, users may not even wish to move on to another level since they can interact and shift with any one level for as long as they would like.  
+
+In order to increase variation for users who cycle through the installation many times, easter eggs situated at several edge cases within each level.  For example, if a user places one hand on one side of the installation and the other hand at the other side a new color or feature may be displayed.  Users who spend more time will discover more easter eggs, but users who spend less time will still be able to interact with and enjoy the installation without feeling confused about how to operate the installation.  In order to aid with any confusion, there will be visual hints and motions to encourage user interaction. These hints will fade in after a certain amount of inactivity from the user, but will not interfere with user play if the user decides to explore one level instead of advancing. 
+
+As a whole, this installation intends to provide users with a carefree way to move their bodies, tap into their inner curiousity and problem solving skills, and enjoy a different mode of gameplay than they are probably used to. 
 
 
 \section{Technical Background}
 
-At the highest level, this installation focuses on human movement as the primary way of interacting with a computer.  This movement will be captured by a camera that transmits a live video feed into the computer.  By using JMyron \cite{noauthor_myron_nodate}, a video capture and computer vision software, the computer will be able to recognize different actions performed by the user. Then, these actions will be categorized and used to inform an algorithm to determine what the CGI character does.  This character will be created using OpenGL, a python based CGI software \cite{andreussi_realtimerendering_nodate}.  Specifically, a character will be designed and rigged using OpenGL, but it’s behavior (and therefore movement) will be dictated by a Markov chain.  Markov chains offer a powerful directed stochastic form of artificial intelligence where the computer is given a predetermined tree of possible actions based upon the previous action.  Then, according to some trained or predetermined probabiity, the computer will choose a path down the Markov chain. This Markov chain will take the user’s behavior into consideration and then determine the next logical response according to some probability.  There is a possibility that this probability can be determined by training the Markov chain, but these probabilities will likely be randomized. 
-By categorizing the user’s movements into a type of emotion or intention, the Markov chain can determine an appropriate response, rather than trying to respond to the infinite number of possible movements by the user on a case by case basis. Similarly, the Markov chain limits the amount of possible reactions by the CGI character, thereby limiting the amount of animation that needs to be prepared. 
+At the highest level, this installation focuses on human movement as the primary way of interacting with a computer.  This movement will be captured by a camera that transmits a live video feed into the computer.  By using handtrack.js \cite{handTrack.js_Dibia2017}, an open source hand tracking software, the computer will be able to recognize where in front of the camera the user's hands are.  These coordinates will interface with the generated graphics to trigger movement of the geometric pattern.  
+
+This project will also make use of the MVC architecture often used in games.  MVC stands for Model, View, Controller and details the way these three components interface with each other. In the MVC architecture, the user interfaces with the controller which sends information to the model.  The model then changes according to the control and updates the view which the user observes and decides what action to take through the controller to continue the cycle. In this project, the model will be written in python and will interface with handtrack.js (the controller) and the view.  The view will be generated using OpenGL using information from the model.  
 
 
 \section{Prior Work}
@@ -68,11 +73,22 @@ By categorizing the user’s movements into a type of emotion or intention, the 
 
 \section{Ethical Considerations}
 
+
+\subsection{Ethical Design}\label{sec:design}
+
+In the textbook ``Introduction to Art: Design, Context, and Meaning,'' \cite{blood_introduction_nodate}the authors caution against different types of unethical practices when creating an art piece.  Chapter 11, ``Art and Ethics'' warns against `appropriation' or the act of incorporating another artist's work into their own without any change or edits and without acknowledgement or credit. Similar to plagarism, this type of artistic appropriation not only steals intellectual property from the original artist, but also damages the credibility of the emerging artist.  While artists often borrow ideas, aesthetics, or even entire pieces from other artists, ``Introduction to Art...'' makes the distinction that these artists are intentionally altering the original idea in order to comment on it's original meaning or to recontextualize it in a new setting. In this way, new artists are still bringing their own intentions and ideas to the original work.  
+
+``Computational Queries'' draws a lot of inspiration from Akash Nihilani, an artist known for his 3D geometric illusions. Specifically, his interactive geometric series titled ``Projections'' from 2015.  These interactive projections incorporate different geometric patterns that flow and ebb as users run their hands along the wall that the projections are screened on. As these geometric patterns move, bright colors are revealed in the space between each shape.  In a very similar way, ``Computational Queries'' will ask users to wave their hands in front of geometric patterns in order to reveal another `level' of the game.  While ``Computational Queries'' will have a different color scheme and type of user interaction than ``Projections,'' the two installations are still very similar.  As such, the final installation will offer a special thanks or acknowledgement for Akash Nihilani as an inspiration for this work. 
+
+\subsection{Ethical Interaction}\label{sec:interaction}
+
+As mentioned, this installation focuses on human movement as input.  Unfortunately, not all users will be able to interact with the installation.  Hand amputees will not be able to interact since the hand tracking software will not be able to accurately capture their arm movements. Furthermore, users with motor inhibitions may not be able to accurately complete the motions needed to advance to the next level.  Providing additional ways to interact with the piece becomes integral when dealing with differently abled people. Providing a joystick controller, handheld mouse, or eye tracking software as inputs to determine the position of the movement allows differently abled people alternatives ways to interact that don't involve their hands. 
+
+In addition, this installation relies heavily on visual feedback for the user.  Users are visually instructed how to interact with the exhibit and then, when they are interacting, the installation responds to their movements visually.  Furthernore, people who interact with the exhibit will be visually prompted hints on screen as well as given visual feedback as a metric for success through the levels. As such, users with visual impairments will not experience any difference as they physically interact with the installation. By including a compelling soundscape that changes as a user interacts, the installation can mimic the visual outputs aurally. For example, as the user interacts with the pattern by moving their hands, the music could change or add a sound.  In this way, blind and low vision users can still interact with the exhibit. 
+
 \section{Limitations, Future Work, and Conclusion}
 
 \section{Appendices}
-
-\section{Conclusion}
 
 \printbibliography 
 
