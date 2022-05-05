@@ -56,14 +56,12 @@ In order to increase variation for users who cycle through the installation many
 
 As a whole, this installation intends to provide users with a carefree way to move their bodies, tap into their inner curiousity and problem solving skills, and enjoy a different mode of gameplay than they are probably used to. 
 
-
 \section{Technical Background}
+At the highest level, this installation focuses on human movement as the primary way of interacting with a computer.  This project will use handtrack.js, an open source hand tracking software by Victor Dibia \cite{}, to interpret user movement as input for the computer.  This software will use the video feed from a webcam to create a bounding box around each instance of a human hand or face.  It also classifies each hand as ``open'', ``closed'', ``pinch'', or ``point''.  Since handtrack.js is a JavaScript based package made for web applications, it makes sense to create this installation using HTML5, CSS3, and a webcam - elements that are common with most computers.   As a result, this installation may be repurposed as a web application for the general public after its run as an installation at Occidental College. 
 
-At the highest level, this installation focuses on human movement as the primary way of interacting with a computer.  This movement will be captured by a camera that transmits a live video feed into the computer.  By using handtrack.js \cite{handTrack.js_Dibia2017}, an open source hand tracking software, the computer will be able to recognize where in front of the camera the user's hands are.  These coordinates will interface with the generated graphics to trigger movement of the geometric pattern.  
+This project will also make use of the MVC architecture often used in games.  MVC stands for Model, View, Controller and details the way these three components interface with each other. In the MVC architecture, the user interfaces with the controller which sends information to the model.  The model then changes according to the controller and updates the view which the user observes.  Based on this update, the user will decide what action to take through the controller to continue the cycle. 
 
-This project will also make use of the MVC architecture often used in games.  MVC stands for Model, View, Controller and details the way these three components interface with each other. In the MVC architecture, the user interfaces with the controller which sends information to the model.  The model then changes according to the control and updates the view which the user observes and decides what action to take through the controller to continue the cycle. In this project, the model will be written in python and will interface with handtrack.js (the controller) and the view.  The view will be generated using OpenGL using information from the model.  
-
-
+In this project, the model will be written in javascript and will interface with handtrack.js (the controller) and the view (the HTML output).  The view will be generated using the built in javascript canvas properties to create geometric patterns that shift and change according to user movements. 
 \section{Prior Work}
 
 \citetitle{kwon_real-time_nodate} by \citeauthor{kwon_real-time_nodate} highlights many interactive generative art exhibits from the early 2000s. In 2003, Scott Snibbe created a visualization that recorded users' shadows and played them back allowing the user to add new shadows to the loop - similar to a guitar feedback loop.  Then, in 2015, Philip Worthington created the installation ``Shadow Monsters`` which used machine learning to recognize specific shapes and features in a user's shadow and modify it \cite{houston_public_media_mfah_2015}.  For example, shadows that look like circles will be made into eyes, and shadows that look like intersecting lines will be made into mouths.  This transformation happens in real time and artificial extremeties are added in real time to the shadow. These two installations forcus on modifying shadows from the user. However, ``Future You`` (2019) from Universal Everything, a technological art company, focuses on using the user as a puppeteer of sorts to animate a unique CGI character \cite{noauthor_future_2019}. This CGI character is a humanoid, futuristic being that is unique for each user based upon predetermined variables. Additionally, this character undergoes an evolution every 5 seconds becoming more complex the longer a user interacts with it.  In this way, the program is generating and modifying the art based upon the user's actions according to various variables (time and appearance).  This paper describes an art installation that uses various aspects from all of this previous work. 
@@ -71,10 +69,9 @@ This project will also make use of the MVC architecture often used in games.  MV
 
 \section{Methods}
 
-\section{Evaluation}
+\section{Evaluation Metrics}
 
 \section{Ethical Considerations}
-
 
 \subsection{Ethical Design}\label{sec:design}
 
@@ -88,9 +85,7 @@ As mentioned, this installation focuses on human movement as input.  Unfortunate
 
 In addition, this installation relies heavily on visual feedback for the user.  Users are visually instructed how to interact with the exhibit and then, when they are interacting, the installation responds to their movements visually.  Furthernore, people who interact with the exhibit will be visually prompted hints on screen as well as given visual feedback as a metric for success through the levels. As such, users with visual impairments will not experience any difference as they physically interact with the installation. By including a compelling soundscape that changes as a user interacts, the installation can mimic the visual outputs aurally. For example, as the user interacts with the pattern by moving their hands, the music could change or add a sound.  In this way, blind and low vision users can still interact with the exhibit. 
 
-\section{Limitations, Future Work, and Conclusion}
-
-\section{Appendices}
+\section{Timeline}
 
 \printbibliography 
 
